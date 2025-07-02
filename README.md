@@ -34,7 +34,7 @@ This Laravel module provides a simple CRUD (Create, Read, Update, Delete) interf
     ```
 2. Publish the config and migration files:
     ```bash
-    php artisan vendor:publish --provider="Admin\Settings\SettingsServiceProvider"
+   php artisan vendor:publish --tag=setting
     ```
 3. Run migrations:
     ```bash

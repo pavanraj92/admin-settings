@@ -44,7 +44,7 @@ class Setting extends Model
         });
 
         static::updating(function ($model) {
-            if (empty($model->slug)) {
+            if ($model->isDirty('title')) {
                 $model->slug = Str::slug($model->title);
             }
 

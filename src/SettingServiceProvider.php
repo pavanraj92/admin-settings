@@ -24,7 +24,7 @@ class SettingServiceProvider extends ServiceProvider
             __DIR__ . '/../config/setting.php' => config_path('constants/admin/setting.php'),
             __DIR__ . '/../src/Controllers' => app_path('Http/Controllers/Admin/SettingManager'),
             __DIR__ . '/../src/Models' => app_path('Models/Admin/Setting'),
-            __DIR__ . '/routes/web.php' => base_path('routes/admin/admin_setting.php'),
+            __DIR__ . '/routes/web.php' => base_path('routes/admin/setting.php'),
         ], 'setting');
 
 
@@ -36,7 +36,11 @@ class SettingServiceProvider extends ServiceProvider
             return; // Avoid errors before migration
         }
 
-        $slug = DB::table('admins')->latest()->value('website_slug') ?? 'admin';
+        $admin = DB::table('admins')
+            ->orderBy('created_at', 'asc')
+            ->first();
+            
+        $slug = $admin->website_slug ?? 'admin';
 
         Route::middleware('web')
             ->prefix("{$slug}/admin") // dynamic prefix
