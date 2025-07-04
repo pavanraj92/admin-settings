@@ -40,7 +40,7 @@ class SettingManagerController extends Controller
             $requestData = $request->validated();
 
             Setting::create($requestData);
-            return redirect()->route('admin.settings.index')->with('success', 'setting created successfully.');
+            return redirect()->route('admin.settings.index')->with('success', 'Setting created successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to load settings: ' . $e->getMessage());
         }
