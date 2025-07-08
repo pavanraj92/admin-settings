@@ -25,8 +25,17 @@
                             <div class="col-md-12">                                
                                 <div class="form-group">
                                     <label>Title<span class="text-danger">*</span></label>
-                                    <input type="text" name="title" class="form-control alphabets-only"
-                                        value="{{ $setting?->title ?? old('title') }}" required>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        class="form-control alphabets-only"
+                                        value="{{ $setting?->title ?? old('title') }}"
+                                        required
+                                        @if(isset($setting)) disabled @endif
+                                    >
+                                    @if(isset($setting))
+                                        <input type="hidden" name="title" value="{{ $setting->title }}">
+                                    @endif
                                     @error('title')
                                         <div class="text-danger validation-error">{{ $message }}</div>
                                     @enderror

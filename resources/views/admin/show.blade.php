@@ -23,19 +23,21 @@
                                     <tr>
                                         <th scope="row">Title</th>
                                         <td scope="col">{{ $setting->title ?? 'N/A' }}</td>
-                                    </tr>
+                                    </tr>         
                                     <tr>
                                         <th scope="row">Slug</th>
                                         <td scope="col">{{ $setting->slug ?? 'N/A' }}</td>
-                                    </tr>
+                                    </tr>         
                                     <tr>
                                         <th scope="row">Config Value</th>
                                         <td scope="col">{{ $setting->config_value ?? 'N/A' }}</td>
                                     </tr>                                
                                     <tr>
                                         <th scope="row">Created At</th>
-                                        <td scope="col">{{ $setting->created_at ?? 'N/A' }}</td>
-                                    </tr>
+                                        <td scope="col">{{ $setting->created_at
+                                            ? $setting->created_at->format(config('GET.admin_date_time_format') ?? 'Y-m-d H:i:s')
+                                            : '—' }}</td>
+                                    </tr>                                
                                 </tbody>
                             </table>   
                                              
