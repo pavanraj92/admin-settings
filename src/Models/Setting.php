@@ -8,6 +8,7 @@ use Symfony\Component\Yaml\Yaml;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Config;
 
 class Setting extends Model
 {
@@ -67,6 +68,13 @@ class Setting extends Model
 
         $listYaml = Yaml::dump($settings, 4, 60);
         Storage::disk('configuration')->put('settings.yml', $listYaml);
+    }
+
+    public static function getPerPageLimit(): int
+    {
+        return Config::has('get.admin_page_limit')
+            ? Config::get('get.admin_page_limit')
+            : 10;
     }
 }
 

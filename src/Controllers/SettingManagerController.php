@@ -16,7 +16,7 @@ class SettingManagerController extends Controller
             $settings = Setting::
                 filter($request->query('keyword'))
                 ->latest()
-                ->paginate(5)
+                ->paginate(Setting::getPerPageLimit())
                 ->withQueryString();
 
             return view('setting::admin.index', compact('settings'));
