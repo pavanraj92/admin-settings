@@ -1,8 +1,8 @@
 {
     "name": "admin/settings",
-    "description": "Configure general system settings, preferences, and options to customize the application’s behavior and appearance.",
+    "description": "Configure general system settings, preferences, and options to customize the application's behavior and appearance.",
     "type": "library",
-    "version": "1.0.0",  
+    "version": "1.0.0",
     "license": "MIT",
     "autoload": {
       "psr-4": {
@@ -19,4 +19,3 @@
     "minimum-stability": "dev",
     "prefer-stable": true
   }
-  
