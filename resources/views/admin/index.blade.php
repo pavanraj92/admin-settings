@@ -79,14 +79,6 @@
                                                         data-placement="top"
                                                         title="View this record"
                                                         class="btn btn-warning btn-sm"><i class="mdi mdi-eye"></i></a>
-                                                    <a href="javascript:void(0)" 
-                                                        data-toggle="tooltip" 
-                                                        data-placement="top"
-                                                        title="Delete this record" 
-                                                        data-url="{{ route('admin.settings.destroy', $setting) }}"
-                                                        data-text="Are you sure you want to delete this record?"                                                    
-                                                        data-method="DELETE"
-                                                        class="btn btn-danger btn-sm delete-record" ><i class="mdi mdi-delete"></i></a>
                                                 </td>
                                             </tr>
                                             @php

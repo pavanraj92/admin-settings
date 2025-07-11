@@ -78,15 +78,5 @@ class SettingManagerController extends Controller
             return redirect()->back()->with('error', 'Failed to load setting for editing: ' . $e->getMessage());
         }
     }
-
-    public function destroy(Setting $setting)
-    {
-        try {
-            $setting->delete();
-            return response()->json(['success' => true, 'message' => 'Record deleted successfully.']);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Failed to delete record.', 'error' => $e->getMessage()], 500);
-        }
-    }
 }
 
