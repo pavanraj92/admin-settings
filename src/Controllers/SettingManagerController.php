@@ -10,11 +10,19 @@ use admin\settings\Models\Setting;
 
 class SettingManagerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admincan_permission:settings_manager_list')->only(['index']);
+        $this->middleware('admincan_permission:settings_manager_create')->only(['create', 'store']);
+        $this->middleware('admincan_permission:settings_manager_edit')->only(['edit', 'update']);
+        $this->middleware('admincan_permission:settings_manager_view')->only(['show']);
+        // $this->middleware('admincan_permission:settings_manager_delete')->only(['destroy']);
+    }
+
     public function index(Request $request)
     {
         try {
-            $settings = Setting::
-                filter($request->query('keyword'))
+            $settings = Setting::filter($request->query('keyword'))
                 ->latest()
                 ->paginate(Setting::getPerPageLimit())
                 ->withQueryString();
@@ -79,4 +87,3 @@ class SettingManagerController extends Controller
         }
     }
 }
-
