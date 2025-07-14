@@ -14,8 +14,8 @@ class SettingManagerController extends Controller
     {
         $this->middleware('admincan_permission:settings_manager_list')->only(['index']);
         $this->middleware('admincan_permission:settings_manager_create')->only(['create', 'store']);
-        $this->middleware('admincan_permission:settings_manager_view')->only(['edit', 'update']);
-        $this->middleware('admincan_permission:settings_manager_edit')->only(['show']);
+        $this->middleware('admincan_permission:settings_manager_edit')->only(['edit', 'update']);
+        $this->middleware('admincan_permission:settings_manager_view')->only(['show']);
         // $this->middleware('admincan_permission:settings_manager_delete')->only(['destroy']);
     }
 
