@@ -2,12 +2,13 @@
 
 @section('title', 'Settings Management')
 
-@section('page-title', 'Create Setting')
+@section('page-title', isset($setting) ?  'Edit Setting' : 'Create Setting')
 
 @section('breadcrumb')
     <li class="breadcrumb-item active" aria-current="page"><a href="{{ route('admin.settings.index') }}">Manage Settings</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Create Setting</li>
+    <li class="breadcrumb-item active" aria-current="page">{{isset($setting) ?  'Edit Setting' : 'Create Setting'}}</li>
 @endsection
+
 
 @section('content')
     <div class="container-fluid">
