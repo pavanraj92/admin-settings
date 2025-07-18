@@ -12,7 +12,7 @@ class SettingUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|min:3|max:255|unique:settings,title,' . $this->route('setting')->id,            
+            'title' => 'required|string|min:3|max:100|unique:settings,title,' . $this->route('setting')->id,            
             'config_value' => 'required|string|min:3|max:65535',
         ];
     }

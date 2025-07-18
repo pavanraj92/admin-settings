@@ -12,7 +12,7 @@ class SettingCreateRequest extends FormRequest
     public function rules(): array
     {
         return [                   
-            'title' => 'required|string|min:3|max:255|unique:settings,title',
+            'title' => 'required|string|min:3|max:100|unique:settings,title',
             'config_value' => 'required|string|min:3|max:65535',
         ];
     }
