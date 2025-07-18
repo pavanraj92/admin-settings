@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('title',100)->unique();
+            $table->string('slug',100)->nullable();
             $table->text('config_value')->nullable();
             $table->timestamps();
         });
