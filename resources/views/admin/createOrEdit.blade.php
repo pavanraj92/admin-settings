@@ -53,7 +53,7 @@
                         </div>
                        
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
+                            <button type="submit" class="btn btn-primary" id="saveBtn">{{isset($setting) ? 'Update' : 'Save'}}</button>
                             <a href="{{ route('admin.settings.index') }}" class="btn btn-secondary">Back</a>
                         </div>
                     </form>
@@ -104,7 +104,6 @@
                     },
                     config_value: {
                         required: true,
-                        minlength: 3
                     }
                 },
                 messages: {
@@ -114,12 +113,15 @@
                     },
                     config_value: {
                         required: "Please enter config value",
-                        minlength: "Config value must be at least 3 characters long"
                     }
                 },
                 submitHandler: function(form) {
                     const $btn = $('#saveBtn');
-                    $btn.prop('disabled', true).text('Saving...');
+                    if ($btn.text().trim().toLowerCase() === 'update') {
+                        $btn.prop('disabled', true).text('Updating...');
+                    } else {
+                        $btn.prop('disabled', true).text('Saving...');
+                    }
                     form.submit();
                 },
                 errorElement: 'div',
