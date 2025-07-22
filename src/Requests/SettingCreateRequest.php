@@ -13,7 +13,7 @@ class SettingCreateRequest extends FormRequest
     {
         return [                   
             'title' => 'required|string|min:3|max:100|unique:settings,title',
-            'config_value' => 'required|string|min:3|max:65535',
+            'config_value' => 'required|string|max:65535',
         ];
     }
 
