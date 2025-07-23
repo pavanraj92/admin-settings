@@ -23,6 +23,7 @@ class SettingManagerController extends Controller
     {
         try {
             $settings = Setting::filter($request->query('keyword'))
+                ->sortable()
                 ->latest()
                 ->paginate(Setting::getPerPageLimit())
                 ->withQueryString();
