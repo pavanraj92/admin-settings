@@ -22,7 +22,7 @@ class SettingManagerController extends Controller
     public function index(Request $request)
     {
         try {
-            $settings = Setting::filter($request->query('keyword'))
+            $settings = Setting::where('slug', '!=', 'industry')->filter($request->query('keyword'))
                 ->sortable()
                 ->latest()
                 ->paginate(Setting::getPerPageLimit())
