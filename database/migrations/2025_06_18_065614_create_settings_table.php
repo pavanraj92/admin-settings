@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title',100)->unique();
             $table->string('slug',100)->nullable();
             $table->text('config_value')->nullable();
+            $table->enum('setting_type',  ['general', 'theme_image'])->nullable()->default('general');
             $table->timestamps();
         });
     }
