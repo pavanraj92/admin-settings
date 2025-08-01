@@ -7,22 +7,31 @@ use Illuminate\Http\Request;
 use admin\settings\Requests\SettingCreateRequest;
 use admin\settings\Requests\SettingUpdateRequest;
 use admin\settings\Models\Setting;
+use admin\admin_auth\Services\ImageService;
 
 class SettingManagerController extends Controller
 {
-    public function __construct()
+    protected $imageService;
+    /**
+     * SettingManagerController constructor.
+     *
+     * @param ImageService $imageService
+     */
+    public function __construct(ImageService $imageService)
     {
+        $this->imageService = $imageService;
         $this->middleware('admincan_permission:settings_manager_list')->only(['index']);
         $this->middleware('admincan_permission:settings_manager_create')->only(['create', 'store']);
         $this->middleware('admincan_permission:settings_manager_edit')->only(['edit', 'update']);
         $this->middleware('admincan_permission:settings_manager_view')->only(['show']);
+        $this->middleware('admincan_permission:logo_favicon_manager_view')->only(['getlogos']);
         // $this->middleware('admincan_permission:settings_manager_delete')->only(['destroy']);
     }
 
     public function index(Request $request)
     {
         try {
-            $settings = Setting::where('slug', '!=', 'industry')->filter($request->query('keyword'))
+            $settings = Setting::where('slug', '!=', 'industry')->where('setting_type', 'general')->filter($request->query('keyword'))
                 ->sortable()
                 ->latest()
                 ->paginate(Setting::getPerPageLimit())
@@ -87,4 +96,42 @@ class SettingManagerController extends Controller
             return redirect()->back()->with('error', 'Failed to load setting for editing: ' . $e->getMessage());
         }
     }
+
+    public function getlogos(Request $request)
+    {
+        $settings = Setting::where('setting_type', 'theme_image')->get();
+        return view('setting::admin.logo_favicon.view',compact('settings'));
+    }
+
+    public function storeLogos(Request $request)
+    {
+        try {
+            $inputData = $request->input('setting');
+            $fileData = $request->file('setting');
+    
+            foreach ($inputData as $index => $setting) {
+                // Load existing setting to get current config_value
+                $existing = Setting::find($setting['id']);
+                $configValue = $existing->config_value ?? null;
+    
+                // If new file is uploaded, replace it
+                if ($request->hasFile("setting.{$index}.config_value")) {
+                    $file = $request->file("setting.{$index}.config_value");
+                    $configValue = $this->imageService->upload($file, 'theme_images');
+                }
+    
+                Setting::updateOrCreate(
+                    ['id' => $setting['id']],
+                    [
+                        'config_value' => $configValue,
+                    ]
+                );
+            }
+    
+            return redirect()->route('admin.settings.getlogos')->with(['success' => 'Settings saved successfully!']);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withError($e->getMessage())->withInput();
+        }
+    }
+    
 }

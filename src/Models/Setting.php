@@ -21,6 +21,7 @@ class Setting extends Model
     protected $fillable = [
         'title',
         'slug',
+        'setting_type',
         'config_value',
     ];
 
