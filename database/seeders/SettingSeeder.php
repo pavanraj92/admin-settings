@@ -77,7 +77,7 @@ class SettingSeeder extends Seeder
                     $this->command->warn("Image file not found: $sourcePath");
                 }
             }
-            Setting::updateOrInsert(
+            Setting::updateOrCreate(
                 ['slug' => $setting['slug']], // unique key
                 [
                     'title' => $setting['title'],
