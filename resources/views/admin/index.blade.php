@@ -52,10 +52,10 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">S. No.</th>
-                                    <th scope="col">@sortablelink('title', 'Title', [], ['style' => 'color: #4F5467; text-decoration: none;'])</th>
-                                    <th scope="col">@sortablelink('slug', 'Slug', [], ['style' => 'color: #4F5467; text-decoration: none;'])</th>
-                                    <th scope="col">@sortablelink('config_value', 'Value', [], ['style' => 'color: #4F5467; text-decoration: none;'])</th>
-                                    <th scope="col">@sortablelink('created_at', 'Created At', [], ['style' => 'color: #4F5467; text-decoration: none;'])</th>
+                                    <th scope="col">@sortablelink('title', 'Title', [], ['class' => 'text-dark'])</th>
+                                    <th scope="col">@sortablelink('slug', 'Slug', [], ['class' => 'text-dark'])</th>
+                                    <th scope="col">@sortablelink('config_value', 'Value', [], ['class' => 'text-dark'])</th>
+                                    <th scope="col">@sortablelink('created_at', 'Created At', [], ['class' => 'text-dark'])</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
