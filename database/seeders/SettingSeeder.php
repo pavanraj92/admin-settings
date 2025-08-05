@@ -88,6 +88,8 @@ class SettingSeeder extends Seeder
                 ]
             );
         }
+        // Force YAML update after seeding
+        (new \admin\settings\Models\Setting())->yamlParse();
         $this->command->info('Settings seeded successfully.');
     }
 }
