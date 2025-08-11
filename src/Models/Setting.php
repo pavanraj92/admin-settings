@@ -51,13 +51,13 @@ class Setting extends Model
         // Slug generation
         static::creating(function ($model) {
             if (empty($model->slug)) {
-                $model->slug = Str::slug($model->title);
+                $model->slug = Str::slug($model->title, '_');
             }
         });
 
         static::updating(function ($model) {
             if ($model->isDirty('title')) {
-                $model->slug = Str::slug($model->title);
+                $model->slug = Str::slug($model->title, '_');
             }
 
             $model->yamlParse();
