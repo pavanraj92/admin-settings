@@ -53,6 +53,18 @@ class SettingSeeder extends Seeder
                 'title' => 'Main Favicon',
                 'config_value' => 'images/favicon.ico',
                 'setting_type' => 'theme_image'
+            ],
+            [
+                'slug' => 'default_currency',
+                'title' => 'Default currency',
+                'config_value' => 'USD',
+                'setting_type' => 'general'
+            ],
+            [
+                'slug' => 'currency_sign',
+                'title' => 'Currency Sign',
+                'config_value' => '$',
+                'setting_type' => 'general'
             ]
         ];
     
