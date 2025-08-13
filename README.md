@@ -30,7 +30,7 @@ This Laravel module provides a simple CRUD (Create, Read, Update, Delete) interf
 "repositories": [
     {
         "type": "vcs",
-        "url": "https://github.com/pavanraj92/admin-role-permission.git"
+        "url": "https://github.com/pavanraj92/admin-settings.git"
     }
 ]
 ```
