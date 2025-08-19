@@ -35,14 +35,19 @@ class Setting extends Model
         'created_at'
     ];
 
-    public function scopeFilter($query, $keyword) {
+    public function scopeFilter($query, $keyword)
+    {
         if (!empty($keyword)) {
-            $query->where(function($query) use ($keyword) {
-                $query->where('title', 'LIKE', '%' . $keyword . '%');
+            $query->where(function ($query) use ($keyword) {
+                $query->where('title', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('slug', 'LIKE', '%' . $keyword . '%')
+                    ->orWhere('config_value', 'LIKE', '%' . $keyword . '%');
             });
         }
+
         return $query;
     }
+
     
     protected static function boot()
     {
