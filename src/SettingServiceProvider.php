@@ -28,10 +28,12 @@ class SettingServiceProvider extends ServiceProvider
         if (is_dir(base_path('Modules/Settings/database/migrations'))) {
             $this->loadMigrationsFrom(base_path('Modules/Settings/database/migrations'));
         }
-        $this->mergeConfigFrom(__DIR__ . '/../config/setting.php', 'setting.constants');
-        // Also merge config from published module if it exists
-        if (file_exists(base_path('Modules/Settings/config/settings.php'))) {
-            $this->mergeConfigFrom(base_path('Modules/Settings/config/settings.php'), 'setting.constants');
+        // Load published module config first (if it exists), then fallback to package config
+        if (file_exists(base_path('Modules/Settings/config/setting.php'))) {
+            $this->mergeConfigFrom(base_path('Modules/Settings/config/setting.php'), 'setting.constants');
+        } else {
+            // Fallback to package config if published config doesn't exist
+            $this->mergeConfigFrom(__DIR__ . '/../config/setting.php', 'setting.constants');
         }
         
         // Standard publishing for non-PHP files
