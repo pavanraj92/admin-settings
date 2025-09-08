@@ -38,6 +38,7 @@ class SettingServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/' => base_path('Modules/Settings/config/'),
             __DIR__ . '/../database/migrations' => base_path('Modules/Settings/database/migrations'),
+            __DIR__ . '/../database/seeders' => base_path('Modules/Settings/database/seeders'),
             __DIR__ . '/../resources/views' => base_path('Modules/Settings/resources/views/'),
         ], 'setting');
        

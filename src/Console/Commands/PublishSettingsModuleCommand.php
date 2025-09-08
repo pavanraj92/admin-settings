@@ -98,6 +98,11 @@ class PublishSettingsModuleCommand extends Command
             $content = str_replace('use admin\\settings\\Models\\Setting;', 'use Modules\\Settings\\app\\Models\\Setting;', $content);
             $content = str_replace('use admin\\settings\\Requests\\SettingCreateRequest;', 'use Modules\\Settings\\app\\Http\\Requests\\SettingCreateRequest;', $content);
             $content = str_replace('use admin\\settings\\Requests\\SettingUpdateRequest;', 'use Modules\\Settings\\app\\Http\\Requests\\SettingUpdateRequest;', $content);
+            $content = str_replace(
+                'use admin\\admin_auth\\Services\\ImageService;',
+                'use Modules\\AdminAuth\\app\\Services\\ImageService;',
+                $content
+            );
         }
 
         return $content;
